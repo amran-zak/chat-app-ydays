@@ -1,0 +1,19 @@
+[debug] [2023-03-15T16:10:13.708Z] ----------------------------------------------------------------------
+[debug] [2023-03-15T16:10:13.710Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\conta\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-03-15T16:10:13.711Z] CLI Version:   11.24.1
+[debug] [2023-03-15T16:10:13.711Z] Platform:      win32
+[debug] [2023-03-15T16:10:13.711Z] Node Version:  v18.12.1
+[debug] [2023-03-15T16:10:13.712Z] Time:          Wed Mar 15 2023 17:10:13 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2023-03-15T16:10:13.712Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-15T16:10:13.807Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-15T16:10:13.808Z] > authorizing via signed-in user (amran2017abdi@gmail.com)
+[debug] [2023-03-15T16:10:13.808Z] [iam] checking project chat-app-yday for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-15T16:10:13.810Z] > refreshing access token with scopes: []
+[debug] [2023-03-15T16:10:13.812Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-03-15T16:10:13.812Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-15T16:10:14.252Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-03-15T16:10:14.253Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-15T16:10:14.267Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-yday:testIamPermissions [none]
+[debug] [2023-03-15T16:10:14.268Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-yday:testIamPermissions x-goog-quota-user=projects/chat-app-yday
+[debug] [2023-03-15T16:10:14.268Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-yday:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
