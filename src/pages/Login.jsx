@@ -24,12 +24,12 @@ const Login = () => {
         <span className="logo"> Chat APP - YDAYS PROJECT</span>
         <span className="title">Login</span>
         <form onSubmit={handleSubmit}>
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
           <button>Sign in</button>
-          {err && <span>Something went wrong</span>}
+          {err && <span>Une erreur est survenue.</span>}
         </form>
-        <p>You don't have an account? <Link to="/register">Register</Link></p>
+        <p>Vous n'avez pas de compte? <Link to="/register">Inscrivez-vous</Link></p>
       </div>
     </div>
   );

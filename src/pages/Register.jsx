@@ -65,20 +65,20 @@ const Register = () => {
         <span className="logo"> Chat APP - YDAYS PROJECT</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
-          <input required type="text" placeholder="display name" />
-          <input required type="email" placeholder="email" />
-          <input required type="password" placeholder="password" />
+          <input required type="text" placeholder="Username" />
+          <input required type="email" placeholder="Email" />
+          <input required type="password" placeholder="Password" />
           <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
             <img src={Add} alt="" />
-            <span>Add an avatar</span>
+            <span>Ajouter un avatar</span>
           </label>
           <button disabled={loading}>Sign up</button>
-          {loading && "Uploading and compressing the image please wait..."}
-          {err && <span>Something went wrong</span>}
+          {loading && "Chargement et compression de l'image en cours, veuillez patienter..."}
+          {err && <span>Une erreur est survenue.</span>}
         </form>
         <p>
-          You do have an account? <Link to="/register">Login</Link>
+          Vous avez déja un compte? <Link to="/register">Connectez-vous</Link>
         </p>
       </div>
     </div>
