@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   collection,
   query,
@@ -12,9 +12,10 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../services/auth.services";
+
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [err, setErr] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
@@ -22,24 +23,34 @@ const Search = () => {
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
-      where("displayName", "==", username)
+      where('displayName', '>=', username),
+        where('displayName', '<=', username + '\uf8ff'),
+        
+         
     );
 
     try {
       const querySnapshot = await getDocs(q);
+      const users = [];
       querySnapshot.forEach((doc) => {
-        setUser(doc.data());
+        users.push(doc.data());
       });
+      setUsers(users);
     } catch (err) {
       setErr(true);
     }
   };
 
+  useEffect(() => {
+    handleSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [username]);
+
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
 
-  const handleSelect = async () => {
+  const handleSelect = async (user) => {
     //check whether the group(chats in firestore) exists, if not create
     const combinedId =
       currentUser.uid > user.uid
@@ -72,10 +83,10 @@ const Search = () => {
         });
       }
     } catch (err) {}
-
-    setUser(null);
+    setUsers([]);
     setUsername("")
   };
+  
   return (
     <div className="search">
       <div className="searchForm">
@@ -87,15 +98,16 @@ const Search = () => {
           value={username}
         />
       </div>
+
       {err && <span>Utilisateur introuvable!</span>}
-      {user && (
-        <div className="userChat" onClick={handleSelect}>
+      {users.map((user) => (
+        <div className="userChat" key={user.uid} onClick={() => handleSelect(user)}>
           <img src={user.photoURL} alt="" />
           <div className="userChatInfo">
             <span>{user.displayName}</span>
           </div>
         </div>
-      )}
+      ))}
     </div>
   );
 };
