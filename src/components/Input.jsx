@@ -73,6 +73,12 @@ const Input = () => {
     setText("");
     setImg(null);
   };
+  
+  const handleKeyPress = async (event) =>{
+    if (event.key === 'Enter') {
+      handleSend();
+    }
+  }
   return (
     <div className="input">
       <input
@@ -80,6 +86,7 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKeyPress} 
       />
       <div className="send">
         <img src={Attach} alt="" />
@@ -92,7 +99,7 @@ const Input = () => {
         <label htmlFor="file">
           <img src={Img} alt="" />
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSend} >Send</button>
       </div>
     </div>
   );

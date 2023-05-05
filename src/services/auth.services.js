@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
+// Partager des données entre des composants de l'arbre de composants
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
