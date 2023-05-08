@@ -1,0 +1,25 @@
+[debug] [2023-03-15T16:46:52.477Z] ----------------------------------------------------------------------
+[debug] [2023-03-15T16:46:52.479Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\conta\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-03-15T16:46:52.479Z] CLI Version:   11.24.1
+[debug] [2023-03-15T16:46:52.479Z] Platform:      win32
+[debug] [2023-03-15T16:46:52.479Z] Node Version:  v18.12.1
+[debug] [2023-03-15T16:46:52.480Z] Time:          Wed Mar 15 2023 17:46:52 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2023-03-15T16:46:52.480Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-15T16:46:52.537Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-15T16:46:52.537Z] > authorizing via signed-in user (amran2017abdi@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\conta\OneDrive\Bureau\AAA\Ynov M1\Ydays\project-yday\chat-app-ydays
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
