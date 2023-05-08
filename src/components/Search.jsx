@@ -1,4 +1,15 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  doc,
+  updateDoc,
+  serverTimestamp,
+  getDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { db } from "../firebase";
 import { AuthContext } from "../services/auth.services";
@@ -8,6 +19,8 @@ const Search = () => {
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState([]);
   const [err, setErr] = useState(false);
+
+  const [chats, setChats] = useState([]);
 
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
@@ -33,16 +46,62 @@ const Search = () => {
 
   useEffect(() => {
     handleSearch();
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+
+      return () => {
+        unsub();
+      };
+    };
+
+    currentUser.uid && getChats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username]);
+  }, [username, currentUser.uid]);
 
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
 
-  const handleSelect = (u) => {
-    dispatch({ type: "CHANGE_USER", payload: u });
+  const handleSelect = async (user) => {
+    dispatch({ type: "CHANGE_USER", payload: user });
+    //check whether the group(chats in firestore) exists, if not create
+    const combinedId =
+      currentUser.uid > user.uid
+        ? currentUser.uid + user.uid
+        : user.uid + currentUser.uid;
+    try {
+      const res = await getDoc(doc(db, "chats", combinedId));
+
+      if (!res.exists()) {
+        //create a chat in chats collection
+        await setDoc(doc(db, "chats", combinedId), { messages: [] });
+
+        //create user chats
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+
+        await updateDoc(doc(db, "userChats", user.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName,
+            photoURL: currentUser.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+      }
+    } catch (err) {}
+    setUsers([]);
+    setUsername("")
   };
+
 
   return (
     <div

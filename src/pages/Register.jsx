@@ -26,7 +26,6 @@ const Register = () => {
       //Create a unique image name
       const date = new Date().getTime();
       const storageRef = ref(storage, `${displayName + date}`);
-
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
@@ -54,6 +53,7 @@ const Register = () => {
         });
       });
     } catch (err) {
+      console.log("error", err);
       setErr(true);
       setLoading(false);
     }
@@ -78,7 +78,7 @@ const Register = () => {
           {err && <span>Une erreur est survenue.</span>}
         </form>
         <p>
-          Vous avez déja un compte? <Link to="/register">Connectez-vous</Link>
+          Vous avez déja un compte? <Link to="/login">Connectez-vous</Link>
         </p>
       </div>
     </div>
